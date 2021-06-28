@@ -3,11 +3,51 @@ package com.bridgelabz.selenium.pages;
 import com.bridgelabz.selenium.base.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.Set;
 
 public class Signup extends BaseClass {
+
+    /*@Desc - Used FindBy Annotations for finding elements on web page
+    * using various locators*/
+
+    @FindBy(className = "nav__button-tertiary")
+    WebElement join_now;
+
+    @FindBy(name = "email-or-phone")
+    WebElement email;
+
+    @FindBy(name = "password")
+    WebElement pwd;
+
+    @FindBy(id = "join-form-submit")
+    WebElement AgreeAndJoin;
+
+    @FindBy(id = "first-name")
+    WebElement firstName;
+
+    @FindBy(id = "last-name")
+    WebElement lastName;
+
+    @FindBy(linkText = "Continue")
+    WebElement continueBtn;
+
+    @FindBy(id = "select-register-phone-country")
+    WebElement Country;
+
+    @FindBy(id = "phoneNumber")
+    WebElement phone;
+
+    @FindBy(linkText = "Submit")
+    WebElement submit;
+
+    /*Called Constructor*/
+    public Signup() {
+        PageFactory.initElements(driver,this);
+    }
 
     /*@Desc - Linkedin application will get opened in browser
     * 1.Using click method , signing up for account
@@ -15,18 +55,16 @@ public class Signup extends BaseClass {
     * 3.Used click for submitting the credentials*/
     public void signup() {
 
-        driver.findElement(By.className("nav__button-tertiary")).click();
+        join_now.click();
 
-        driver.findElement(By.name("email-or-phone")).sendKeys("vaishnavibirle2209@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("Vaishnavi@123");
-        driver.findElement(By.id("join-form-submit")).click();
+        email.sendKeys("vaishnavibirle2209@gmail.com");
+        pwd.sendKeys("Vaishnavi@123");
+        AgreeAndJoin.click();
 
-        driver.findElement(By.id("first-name")).sendKeys("Vaishnavi");
-        driver.findElement(By.id("last-name")).sendKeys("Birle");
-        driver.findElement(By.linkText("Continue")).click();
+        firstName.sendKeys("Vaishnavi");
+        lastName.sendKeys("Birle");
+        continueBtn.click();
 
-
-        WebElement Country = driver.findElement(By.id("select-register-phone-country"));
         Select select = new Select(Country);
 
         select.selectByVisibleText("India");
@@ -34,9 +72,9 @@ public class Signup extends BaseClass {
         String selectedOption = India.getText();
         System.out.println("Selected option is : "+ selectedOption);
 
-        driver.findElement(By.name("phoneNumber")).sendKeys("8668602568");
+        phone.sendKeys("8668602568");
 
-        driver.findElement(By.linkText("Submit")).click();
+        submit.click();
 
 
 
@@ -62,15 +100,7 @@ public class Signup extends BaseClass {
             System.out.println(winHandle);
             String actual = driver.getTitle();
             System.out.println(actual);
-            System.out.println("Before if");
 
-            if (actual.equals("Sign in – Google accounts")) {
-                System.out.println("After if");
-                driver.findElement(By.name("identifier")).sendKeys("vaishnavibirle1133@gmail.com");
-                driver.findElement(By.linkText("Next")).click();
-
-                Thread.sleep(3000);
-            }
         }
 
 
