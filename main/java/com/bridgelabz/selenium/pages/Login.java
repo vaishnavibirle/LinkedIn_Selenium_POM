@@ -38,8 +38,8 @@ public class Login extends BaseClass {
     public String login() {
 
         SignIn.click();
-        username.sendKeys("vaishnavibirle1133@gmail.com");
-        password.sendKeys("vaishnavi@123");
+        username.sendKeys("");
+        password.sendKeys("");
         SignIn_Submit.click();
 
         return driver.getTitle();
